@@ -1,0 +1,13 @@
+<div class="relative w-full flex flex-col gap-5 md:gap-10 md:flex-row md:flex-wrap md:items-start md:justify-center animate-section-transition">
+    <app-todo *ngFor="let task of tasks; let idx = index" id="task-{{idx}}" [task]="task" [index]="idx" (removeEmitter)="removeTask($event)" 
+        class="today-item w-full md:w-[45%] p-5 flex flex-row gap-5 md:gap-10 items-center relative group-one">
+    </app-todo>
+</div>
+<div class="sticky z-[101] mt-auto mx-auto bottom-0 p-5 rounded-full bg-apple-action cursor-pointer br-tr duration-200 ease-in-out
+shadow hover:shadow-apple-action hover:shadow-block-xl" onclick="toNewCard()">
+    <span class="w-full h-full flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>                      
+    </span>
+</div>

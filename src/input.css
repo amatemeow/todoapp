@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.br-tr {
+  animation: round-out 0.5s;
+}
+
+.br-tr:hover {
+  animation: round-in 0.5s forwards, bounce 1s 1s infinite, pulse 2s 1s infinite;
+}
+
+.animate-section-transition {
+  animation: section-translate-in .5s forwards;
+}
+
+.animate-section-loading {
+  animation: section-loading 2s forwards;
+}
+
+@keyframes round-in {
+    0% {
+        @apply rounded-full;
+    }
+    35% {
+        @apply rounded-[45%];
+    }
+    70% {
+        @apply rounded-2xl;
+    }
+    100% {
+        @apply rounded-xl;
+    }
+    from {
+        transform: rotate(0deg);
+    }
+      to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes round-out {
+    0% {
+        @apply rounded-xl;
+    }
+    35% {
+        @apply rounded-2xl;
+    }
+    70% {
+        @apply rounded-[45%];
+    }
+    100% {
+        @apply rounded-full;
+    }
+    from {
+        transform: rotate(180deg);
+    }
+      to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(-15%);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes section-translate-in {
+  from {
+    translate: 0 -9999px;
+    opacity: 0;
+  }
+  to {
+    translate: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes section-opacity-in {
+  to {
+    opacity: 1;	
+  }
+}
+
+@keyframes section-loading {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}

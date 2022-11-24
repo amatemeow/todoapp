@@ -1,0 +1,53 @@
+<div class="relative w-full flex flex-col gap-5 md:gap-10 md:flex-row md:flex-wrap md:items-start animate-section-transition">
+    <div class="today-item w-[45%] md:w-36 h-48 p-5 flex flex-row relative group-one">
+        <a class="absolute inset-0 w-full h-full z-20" href="newnote.html"></a>
+        <span class="noteimportant absolute z-10 right-2 top-2 w-4 h-4 rounded-full bg-apple-action"></span>
+        <div class="absolute inset-0 w-full h-full rounded-xl bg-[#181818] shadow-block-md z-0 
+        group-one-hover:scale-105 group-one-hover:shadow-block-md group-one-hover:shadow-apple-action 
+        duration-300 ease-in" content=""></div>
+        <label class="hidden cardselect z-40 inline-flex absolute inset-0 w-full h-full items-center cursor-pointer">
+            <input type="checkbox" value="" class="cardselect sr-only peer">
+            <span class="w-full h-full bg-black bg-opacity-30 rounded-xl peer-checked:bg-opacity-0 peer-checked:border-2 peer-checked:border-apple-action
+            group-one-hover:scale-105 duration-300"></span>
+        </label>
+        <div class="z-10 flex flex-col gap-2">
+            <span class="text-base line-clamp-1">Some title</span>
+            <p class="text-sm font-light line-clamp-5">Lorem ipsum dasfas asfafas asfasfasf asf asf asf as f as fas  sdajkshflkga asfhljkahfjasj.fha sfkhalkjfshdka dkaj;jdaskjd;alk asldkj;askj</p>
+        </div>
+    </div>
+    <div id="contextcard" class="context hidden absolute z-[105] rounded-xl bg-[#202020] shadow-md shadow-black flex flex-col 
+    font-light text-base text-apple-action">
+        <span class="relative w-full p-2 pl-5 pr-10 first:rounded-t-xl last:rounded-b-xl flex gap-1 items-center 
+        justify-between hover:bg-apple-action hover:text-white">
+            <a class="absolute inset-0 w-full h-full" href=""></a>
+            Clone
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+            </svg>                      
+        </span>
+        <span class="relative w-full p-2 pl-5 pr-10 first:rounded-t-xl last:rounded-b-xl flex gap-1 items-center 
+        justify-between hover:bg-apple-action hover:text-white">
+            <a class="absolute inset-0 w-full h-full" href=""></a>
+            Share
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+            </svg>                      
+        </span>
+        <span class="relative w-full p-2 pl-5 pr-10 first:rounded-t-xl last:rounded-b-xl flex gap-1 items-center 
+        justify-between hover:bg-red-700 hover:text-white text-red-700">
+            <a class="absolute inset-0 w-full h-full" href=""></a>
+            Delete
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+        </span>
+    </div>
+</div>
+<div class="sticky z-[101] mt-auto mx-auto bottom-0 p-5 rounded-full bg-apple-action cursor-pointer br-tr duration-200 ease-in-out
+shadow hover:shadow-apple-action hover:shadow-block-xl" onclick="window.location.href = 'newnote.html'">
+    <span class="w-full h-full flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>                      
+    </span>
+</div>

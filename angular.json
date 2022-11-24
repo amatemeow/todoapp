@@ -25,9 +25,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/tailwind.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "src/script.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -87,9 +91,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/tailwind.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "src/script.js"
+            ]
           }
         }
       }

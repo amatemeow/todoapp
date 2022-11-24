@@ -1,0 +1,21 @@
+<div class="portrait:hidden text-xl font-extrabold p-5" content="">ToDo</div>
+<span class="font-light p-5 pr-0">Today, 01.01.1999</span>
+<span class="cardselect hidden font-mono text-apple-action py-5">Selecting...</span>
+<nav class="ml-auto p-5 text-right">
+    <span class="flex cursor-pointer hover:scale-125 hover:rotate-90 duration-300 hover:text-apple-action" onclick="showEllipsContext()"> 
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+        </svg>
+    </span>
+    <div id="contextcards" class="context hidden absolute z-[101] w-fit h-fit right-5 top-5 rounded-xl bg-[#202020] shadow-md shadow-black">
+        <span class="p-2 pl-5 pr-10 font-light flex cursor-pointer first:rounded-t-xl last:rounded-b-xl rounded-xl hover:bg-apple-action" onclick="showCardSelect(this)">
+            Select...
+        </span>
+        <span class="hidden selectoption p-2 pl-5 pr-10 font-light flex cursor-pointer first:rounded-t-xl last:rounded-b-xl hover:bg-apple-action" onclick="">
+            Mute selected
+        </span>
+        <span class="hidden selectoption p-2 pl-5 pr-10 font-light text-red-700 flex cursor-pointer first:rounded-t-xl last:rounded-b-xl hover:bg-red-700 hover:text-white" onclick="">
+            Delete selected
+        </span>
+    </div>
+</nav>
