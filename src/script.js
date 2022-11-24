@@ -1,10 +1,20 @@
-var ctxs;
 var ellipsctx;
 var contexts;
 var todayItems;
+var observer;
 
 window.onload = function() {
-    ctxs = $(document).find('.contextcard');
+    initialize();
+    observer = new MutationObserver((mutations, observer) => {
+        initialize();
+    })
+    observer.observe(document, {
+        subtree: true,
+        attributes: true
+    });
+}
+
+function initialize() {
     ellipsctx = $(document).find('#contextcards');
     contexts = $(document).find('.context');
     todayItems = $(document).find('.today-item');
@@ -21,12 +31,17 @@ window.onload = function() {
         // Set the position for menu
         ctx.css('top', `${y}px`);
         ctx.css('left', `${x}px`);
+
     
         ctx.toggleClass('hidden', false);
         document.addEventListener('click', documentClickHandler, true);
         document.addEventListener('contextmenu', documentContextHandler, true);
     }));
-}
+
+    console.log('init', ellipsctx, contexts, todayItems)
+};
+
+
 
 function overrideDefaultContext(event) {
     event.preventDefault();
