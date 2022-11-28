@@ -1,5 +1,5 @@
 <div class="portrait:hidden text-xl font-extrabold p-5" content="">ToDo</div>
-<span class="font-light p-5 pr-0">Today, 01.01.1999</span>
+<span *ngIf="day" class="font-light p-5 pr-0">{{day.ofWeek}}, {{day.date}}</span>
 <span class="cardselect hidden font-mono text-apple-action py-5">Selecting...</span>
 <nav class="ml-auto p-5 text-right">
     <span class="flex cursor-pointer hover:scale-125 hover:rotate-90 duration-300 hover:text-apple-action" onclick="showEllipsContext()"> 

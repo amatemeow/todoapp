@@ -10,8 +10,19 @@ export class TodoComponent {
   @Input() task!: Task;
   @Input() index!: number;
   @Output() removeEmitter = new EventEmitter<Task>();
+  @Output() doneEmitter = new EventEmitter<Task>();
 
   removeRequest(task: Task) {
     this.removeEmitter.emit(task);
+  }
+
+  toggleMute() {
+    this.task.muted = !this.task.muted;
+    this.updateOrAddRequest(this.task);
+  }
+
+  updateOrAddRequest(task: Task) {
+    // console.log('todo sent');
+    this.doneEmitter.emit(task);
   }
 }

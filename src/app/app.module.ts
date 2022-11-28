@@ -11,6 +11,8 @@ import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './header/header.component';
 import { CardContextComponent } from './card-context/card-context.component';
 import { HeaderContextComponent } from './header-context/header-context.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { HeaderContextComponent } from './header-context/header-context.componen
     MainComponent,
     HeaderComponent,
     CardContextComponent,
-    HeaderContextComponent
+    HeaderContextComponent,
+    MessageBoxComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

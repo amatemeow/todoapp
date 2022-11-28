@@ -1,26 +1,36 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { DayService } from '../day.service';
+import { Day } from '../entities/day';
 import { Task } from '../entities/task';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css']
 })
-export class TodosComponent {
-  taskList: Task[] = [
-    {
-      time: '09:30',
-      title: 'Some Task',
-      description: 'Very cool task to do right away!',
-      done: false
-    },
-    {
-      time: '15:20',
-      title: 'Some Other Task',
-      description: 'Very cool another task to do right away!',
-      done: false
-    },
-  ];
+export class TodosComponent implements OnInit {
+  day!: Day
+  taskList: Task[] = []
+
+  constructor(
+    private taskService: TaskService,
+    private dayService: DayService) {}
+
+  ngOnInit(): void {
+    this.getToday();
+    this.getTasks();
+  }
+
+  getToday(): void {
+    this.dayService.getToday()
+    .subscribe(day => this.day = day);
+  }
+
+  getTasks(): void {
+    this.taskService.getTasks()
+    .subscribe(tasks => this.taskList = tasks);
+  }
 
   @Input() task!: Task;
 
@@ -29,6 +39,13 @@ export class TodosComponent {
   }
 
   removeTask(task: Task) {
-    this.taskList.splice(this.taskList.indexOf(task), 1);
+    this.taskList = this.taskList.filter(t => t !== task);
+    this.taskService.deleteTask(task.id!).subscribe();
+  }
+
+  updateOrAddTask(task: Task) {
+    // console.log('todos sent');
+    this.taskService.updateOrAddTask(task).subscribe();
+    this.getTasks();
   }
 }

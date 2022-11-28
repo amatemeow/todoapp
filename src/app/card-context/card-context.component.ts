@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Task } from '../entities/task';
 
 @Component({
@@ -9,8 +10,33 @@ import { Task } from '../entities/task';
 export class CardContextComponent {
   @Input() task!: Task;
   @Output() removeEmitter = new EventEmitter<Task>();
+  @Output() doneEmitter = new EventEmitter<Task>();
+
+  constructor(private clipboard: Clipboard) {}
 
   removeRequest(task: Task) {
     this.removeEmitter.emit(task);
+  }
+
+  toggleDone() {
+    this.task.done = !this.task.done;
+    this.updateOrAddRequest(this.task);
+  }
+
+  cloneTask() {
+    const newTask = this.task;
+    newTask.id = undefined;
+    newTask.muted = false;
+    newTask.done = false;
+    this.updateOrAddRequest(newTask);
+  }
+
+  updateOrAddRequest(task: Task) {
+    // console.log('context sent');
+    this.doneEmitter.emit(task);
+  }
+
+  shareTask() {
+    this.clipboard.copy(JSON.stringify(this.task, (k,v) => { if(k !== "id" && k !== "muted") return v }, 4));
   }
 }

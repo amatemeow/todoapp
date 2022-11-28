@@ -38,7 +38,7 @@ function initialize() {
         document.addEventListener('contextmenu', documentContextHandler, true);
     }));
 
-    console.log('init', ellipsctx, contexts, todayItems)
+    // console.log('init', ellipsctx, contexts, todayItems)
 };
 
 

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DayService } from '../day.service';
+import { Day } from '../entities/day';
 
 @Component({
   selector: 'header',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  day!: Day;
 
+  constructor(private dayService: DayService) {}
+
+  ngOnInit(): void {
+    this.getToday();
+  }
+
+  getToday(): void {
+    this.dayService.getToday()
+    .subscribe(day => this.day = day);
+  }
 }

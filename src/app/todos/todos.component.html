@@ -1,5 +1,6 @@
 <div class="relative w-full flex flex-col gap-5 md:gap-10 md:flex-row md:flex-wrap md:items-start md:justify-center animate-section-transition">
-    <app-todo *ngFor="let task of tasks; let idx = index" id="task-{{idx}}" [task]="task" [index]="idx" (removeEmitter)="removeTask($event)" 
+    <app-todo *ngFor="let task of tasks; let idx = index" id="task-{{idx}}" [task]="task" [index]="idx" 
+        (removeEmitter)="removeTask($event)" (doneEmitter)="updateOrAddTask($event)"
         class="today-item w-full md:w-[45%] p-5 flex flex-row gap-5 md:gap-10 items-center relative group-one">
     </app-todo>
 </div>
