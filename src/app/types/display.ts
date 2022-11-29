@@ -1,1 +1,1 @@
-export type Display = 'todos' | 'notes' | 'settings';
+export type Display = 'todos' | 'notes' | 'settings' | 'task-edit' | 'note-edit';

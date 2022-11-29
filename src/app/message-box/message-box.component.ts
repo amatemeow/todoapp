@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-message-box',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class MessageBoxComponent {
 
+  constructor(public messageService: MessageService) {}
+
+  ngOnInit() {}
 }

@@ -9,7 +9,7 @@ import { Display } from './types/display';
 export class AppComponent {
   title = 'todoapp';
 
-  display: Display = 'todos';
+  display: Display = 'task-edit';
 
   translateDisplay(display: Display) {
     this.display = display;

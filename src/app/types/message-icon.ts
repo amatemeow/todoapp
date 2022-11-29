@@ -1,0 +1,1 @@
+export type messageIcon = 'success' | 'fail' | 'info';

@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task } from './entities/task';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Day } from './entities/day';
+import { MessageService } from './message.service';
+import { messageIcon } from './types/message-icon';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +18,41 @@ export class TaskService {
   };
 
   constructor(
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private messageService: MessageService) {}
 
-    getTasks(): Observable<Task[]> {
-      return this.http.get<Task[]>(this.tasksUrl);
+  private log(message: string, icon: messageIcon) {
+    this.messageService.set(message, icon);
+  }
+
+  private handleError<T>(operation = 'operation', icon: messageIcon, result?: T) {
+    return (error: any): Observable<T> => {
+      // console.error(error.error);
+      this.log(error.error.text || error.error || error.message, icon);
+
+      return of(result as T);
     }
+  }
 
-    updateOrAddTask(task: Task): Observable<any> {
-      // console.log('post sent');
-      return this.http.post(this.tasksUrl, task, this.httpOptions).pipe();
-    }
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.tasksUrl)
+    .pipe(
+      catchError(this.handleError<Task[]>('getTasks', 'fail', []))
+    );
+  }
 
-    deleteTask(id: string): Observable<Task> {
-      const url = this.tasksUrl + '/' + id;
+  updateOrAddTask(task: Task): Observable<any> {
+    // console.log('post sent');
+    return this.http.post(this.tasksUrl, task, this.httpOptions).pipe(
+      catchError(this.handleError<Task>('updateOrAddTask', 'success'))
+    );
+  }
 
-      return this.http.delete<Task>(url, this.httpOptions).pipe();
-    }
+  deleteTask(id: string): Observable<Task> {
+    const url = this.tasksUrl + '/' + id;
+
+    return this.http.delete<Task>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Task>('deleteTask', 'success'))
+    );
+  }
 }

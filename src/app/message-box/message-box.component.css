@@ -1,0 +1,12 @@
+.animate-message {
+    animation: message-slide 4s linear forwards;
+}
+
+@keyframes message-slide {
+    0%, 100% {
+        transform: translateY(-300px);
+    }
+    15%, 85% {
+        transform: translateY(0);
+    }
+}

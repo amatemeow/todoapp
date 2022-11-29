@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Task } from '../entities/task';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-card-context',
@@ -12,7 +13,9 @@ export class CardContextComponent {
   @Output() removeEmitter = new EventEmitter<Task>();
   @Output() doneEmitter = new EventEmitter<Task>();
 
-  constructor(private clipboard: Clipboard) {}
+  constructor(
+    private clipboard: Clipboard,
+    private messageService: MessageService) {}
 
   removeRequest(task: Task) {
     this.removeEmitter.emit(task);
@@ -38,5 +41,6 @@ export class CardContextComponent {
 
   shareTask() {
     this.clipboard.copy(JSON.stringify(this.task, (k,v) => { if(k !== "id" && k !== "muted") return v }, 4));
+    this.messageService.set('Task is copied to clipboard!', 'info');
   }
 }

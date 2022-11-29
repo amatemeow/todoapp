@@ -1,0 +1,9 @@
+/* app-todo {
+    animation: todo-fading 1s linear forwards;
+}
+
+@keyframes todo-fading {
+    from {
+        opacity: 0;
+    }
+} */

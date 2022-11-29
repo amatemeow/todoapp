@@ -13,6 +13,10 @@ import { CardContextComponent } from './card-context/card-context.component';
 import { HeaderContextComponent } from './header-context/header-context.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageBoxComponent } from './message-box/message-box.component';
+import { TodoEditComponent } from './todo-edit/todo-edit.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [];
 
 @NgModule({
   declarations: [
@@ -26,11 +30,15 @@ import { MessageBoxComponent } from './message-box/message-box.component';
     HeaderComponent,
     CardContextComponent,
     HeaderContextComponent,
-    MessageBoxComponent
+    MessageBoxComponent,
+    TodoEditComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(
+      appRoutes
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

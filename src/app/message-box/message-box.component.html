@@ -1,1 +1,9 @@
-<p>message-box works!</p>
+<div (animationend)="messageService.remove()" *ngIf="messageService.display" class="flex gap-2 items-center justify-center max-w-md rounded bg-apple-action py-1 px-2 
+        shadow-lg shadow-black animate-message font-thin text-sm">
+    <!-- <i [ngClass]="{
+            'bi-exclamation-circle': messageService.message.icon == 'info', 
+            'bi-check-circle-fill': messageService.message.icon == 'success',
+            'bi-x-circle-fill text-red-600': messageService.message.icon == 'fail'
+        }" class="bi text-base"></i> -->
+    <p>{{messageService.message.text}}</p>
+</div>
