@@ -14,7 +14,7 @@ fun Route.taskRouting() {
             if (taskStorage.isNotEmpty()) {
                 call.respond(taskStorage)
             } else {
-                call.respondText("No tasks found", status = HttpStatusCode.NotFound)
+                call.respondText("Looks like there's nothing left to do!", status = HttpStatusCode.OK)
             }
         }
         get("{id?}") {
@@ -34,8 +34,16 @@ fun Route.taskRouting() {
                 val existingTask = taskStorage.find { it.id == task.id }
                 if (existingTask !== null) {
                     taskStorage.set(taskStorage.indexOf(existingTask), task)
+                    call.respondText(
+                        "Task updated successfully!",
+                        status = HttpStatusCode.Created
+                    )
                 } else {
                     taskStorage.add(task)
+                    call.respondText(
+                        "New task added successfully!",
+                        status = HttpStatusCode.Created
+                    )
                 }
             } catch (e: ContentTransformationException) {
                 return@post call.respondText(
@@ -43,10 +51,9 @@ fun Route.taskRouting() {
                     status = HttpStatusCode.BadRequest
                 )
             }
-            call.respondText(
-                "New task added successfully!",
-                status = HttpStatusCode.Created
-            )
+        }
+        put {
+
         }
         delete("{id?}") {
             val id = call.parameters["id"] ?: return@delete call.respondText(

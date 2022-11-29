@@ -6,19 +6,18 @@ import kotlinx.serialization.Transient
 import java.util.UUID
 
 @Serializable
-data class Task(
+data class Note(
     var title: String,
     var description: String,
     val id: String = UUID.randomUUID().toString(),
-    var done: Boolean = false,
+    var important: Boolean = false,
     @Transient
     val dtCreated: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
-    var time: String = String.format("%02d:%02d", dtCreated.hour, dtCreated.minute),
-    var date: LocalDate = dtCreated.date,
-    var muted: Boolean = false
+    val time: String = String.format("%02d:%02d", dtCreated.hour, dtCreated.minute),
+    val date: LocalDate = dtCreated.date
 )
 
-val taskStorage = mutableListOf<Task>(
+val noteStorage = mutableListOf<Task>(
     Task(
         title = "Some Important Task",
         description = "Yeah, should better do it fast!"
