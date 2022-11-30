@@ -11,20 +11,20 @@ data class Task(
     var description: String,
     val id: String = UUID.randomUUID().toString(),
     var done: Boolean = false,
-    @Transient
-    val dtCreated: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
-    var time: String = String.format("%02d:%02d", dtCreated.hour, dtCreated.minute),
-    var date: LocalDate = dtCreated.date,
-    var muted: Boolean = false
+    var timeUnit: TimeUnit,
+    var muted: Boolean = false,
+    var notifyHoursBefore: Int = 0
 )
 
 val taskStorage = mutableListOf<Task>(
     Task(
         title = "Some Important Task",
-        description = "Yeah, should better do it fast!"
+        description = "Yeah, should better do it fast!",
+        timeUnit = TimeUnit(Clock.System.now())
     ),
     Task(
         title = "Some Other Important Task",
-        description = "Yeah, should better do it even faster!"
+        description = "Yeah, should better do it even faster!",
+        timeUnit = TimeUnit(instant = Clock.System.now(), hour = 9, minute = 5)
     )
 )

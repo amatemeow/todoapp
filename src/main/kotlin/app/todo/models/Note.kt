@@ -11,19 +11,18 @@ data class Note(
     var description: String,
     val id: String = UUID.randomUUID().toString(),
     var important: Boolean = false,
-    @Transient
-    val dtCreated: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
-    val time: String = String.format("%02d:%02d", dtCreated.hour, dtCreated.minute),
-    val date: LocalDate = dtCreated.date
+    val timeUnit: TimeUnit
 )
 
-val noteStorage = mutableListOf<Task>(
-    Task(
+val noteStorage = mutableListOf<Note>(
+    Note(
         title = "Some Important Task",
-        description = "Yeah, should better do it fast!"
+        description = "Yeah, should better do it fast!",
+        timeUnit = TimeUnit()
     ),
-    Task(
+    Note(
         title = "Some Other Important Task",
-        description = "Yeah, should better do it even faster!"
+        description = "Yeah, should better do it even faster!",
+        timeUnit = TimeUnit()
     )
 )

@@ -1,7 +1,8 @@
 package app.todo.routes
 
-import app.todo.models.Day
+import app.todo.models.CALENDAR
 import app.todo.models.dayStorage
+import app.todo.models.TimeUnit
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -14,8 +15,8 @@ import kotlinx.datetime.toLocalDateTime
 fun Route.dayRouting() {
     route("calendar") {
         get {
-            if (dayStorage.isNotEmpty()) {
-                call.respond(dayStorage)
+            if (CALENDAR.isNotEmpty()) {
+                call.respond(CALENDAR)
             } else {
                 call.respondText("Your calendar is empty!", status = HttpStatusCode.NotFound)
             }
@@ -25,17 +26,20 @@ fun Route.dayRouting() {
                 "Missing date!",
                 status = HttpStatusCode.BadRequest
             )
+            val instant = Clock.System.now()
             if (date == "today") {
-                date = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date.toString()
-            }
-            try {
-                val day = dayStorage.find { it.date == LocalDate.parse(date) } ?: Day(LocalDate.parse(date))
-                call.respond(day)
-            } catch (e: RuntimeException) {
-                return@get call.respondText(
-                    "Invalid date!",
-                    status = HttpStatusCode.BadRequest
-                )
+                call.respond(TimeUnit())
+            } else {
+                try {
+                    val day = CALENDAR.find { it.lDate == LocalDate.parse(date) } ?: TimeUnit(lDate = LocalDate.parse(date)
+                    )
+                    call.respond(day)
+                } catch (e: RuntimeException) {
+                    return@get call.respondText(
+                        "Invalid date!",
+                        status = HttpStatusCode.BadRequest
+                    )
+                }
             }
         }
     }
