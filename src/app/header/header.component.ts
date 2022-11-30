@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DayService } from '../day.service';
+import { DayService } from '../calendar.service';
 import { Day } from '../entities/day';
+import { TimeUnit } from '../entities/timeUnit';
 
 @Component({
   selector: 'header',
@@ -8,7 +9,7 @@ import { Day } from '../entities/day';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  day!: Day;
+  timeUnit!: TimeUnit;
 
   constructor(private dayService: DayService) {}
 
@@ -18,6 +19,6 @@ export class HeaderComponent {
 
   getToday(): void {
     this.dayService.getToday()
-    .subscribe(day => this.day = day);
+    .subscribe(unit => this.timeUnit = unit);
   }
 }

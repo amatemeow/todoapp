@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../entities/task';
+import { format } from '../functions/format';
 
 @Component({
   selector: 'app-todo',
@@ -24,5 +25,9 @@ export class TodoComponent {
   updateOrAddRequest(task: Task) {
     // console.log('todo sent');
     this.doneEmitter.emit(task);
+  }
+
+  format(num: number) {
+    return format(num, 2);
   }
 }

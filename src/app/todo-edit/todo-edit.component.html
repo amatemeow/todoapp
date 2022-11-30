@@ -4,15 +4,15 @@
             <span class="pl-5 hidden lg:block">Date</span>
             <div class="flex justify-start gap-1 items-center">
                 <select class="form-select rounded-xl bg-[#202020] border-none">
-                    <option>{{date.year}}</option>
+                    <option *ngFor="let unit of calendar">{{unit.year}}</option>
                 </select>
                 -
                 <select class="form-select rounded-xl bg-[#202020] border-none">
-                    <option>{{date.month}}</option>
+                    <option *ngFor="let unit of calendar">{{unit.month}}</option>
                 </select>
                 -
                 <select class="form-select rounded-xl bg-[#202020] border-none">
-                    <option>{{date.ofMonth}}</option>
+                    <option *ngFor="let unit of calendar">{{unit.dayOfMonth}}</option>
                 </select>
             </div>
         </div>
@@ -20,35 +20,35 @@
             <span class="pl-5 hidden lg:block">Time</span>
             <div class="flex justify-start gap-1 items-center">
                 <select class="form-select rounded-xl bg-[#202020] border-none">
-                    <option>{{hours}}</option>
+                    <option *ngFor="let hour of calendarService.hours" [selected]="timeUnit ? hour===timeUnit.hour : hour===0">{{format(hour)}}</option>
                 </select>
                 :
                 <select class="form-select rounded-xl bg-[#202020] border-none">
-                    <option>{{minutes}}</option>
+                    <option *ngFor="let minute of calendarService.minutes" [selected]="timeUnit ? minute===timeUnit.minute : minute===0">{{format(minute)}}</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="flex flex-col gap-2 w-full lg:max-w-lg">
         <span class="pl-5">Title</span>
-        <input placeholder="Untitled" class="form-input rounded-xl bg-[#202020] border-none">
+        <input placeholder="Untitled" class="form-input rounded-xl bg-[#202020] border-none" value="{{task.title || ''}}">
     </div>
 </div>
 <div class="flex flex-col gap-2 w-full h-full">
     <span class="pl-5">Description</span>
-    <textarea placeholder="No description" class="form-textarea min-h-[12rem] h-full rounded-xl bg-[#202020] border-none resize-none"></textarea>
+    <textarea placeholder="No description" class="form-textarea min-h-[12rem] h-full rounded-xl bg-[#202020] border-none resize-none">{{task.description || ''}}</textarea>
 </div>
 <div class="flex items-center gap-2 w-full">
     <span class="pl-5">Notify</span>
     <select class="form-select rounded-xl bg-[#202020] border-none">
-        <option>3</option>
+        <option *ngFor="let hour of calendarService.notifies" [selected]="task.notifyHoursBefore ? hour===task.notifyHoursBefore : hour===0">{{hour}}</option>
     </select>
     <span>hour(s) before</span>
 </div>
 <div class="w-full pl-5 flex flex-row gap-2 items-center">
     <span>Turn on notifications</span>
     <label class="inline-flex relative items-center cursor-pointer">
-        <input checked type="checkbox" value="" class="sr-only peer">
+        <input [checked]="!task.muted || true" type="checkbox" value="" class="sr-only peer">
         <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 
         peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer 
         dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white 
@@ -59,11 +59,11 @@
 </div>
 <nav class="w-full p-5 mt-auto items-center justify-center flex gap-10">
     <button class="w-1/2 sm:w-44 py-2 px-5 border-[1px] border-apple-action bg-apple-action rounded-xl
-    hover:bg-white hover:text-apple-action duration-300" onclick="window.location.href = 'today.html'">
+    hover:bg-white hover:text-apple-action duration-300" >
         Save
     </button>
     <button class="w-1/2 sm:w-44 py-2 px-5 border- border-[1px] border-red-700 rounded-xl text-red-700
-    hover:text-white hover:bg-red-700 duration-300">
+    hover:text-white hover:bg-red-700 duration-300" [routerLink]="['']">
         Delete
     </button>
 </nav>

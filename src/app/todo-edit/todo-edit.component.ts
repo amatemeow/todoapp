@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DayService } from '../day.service';
+import { DayService } from '../calendar.service';
 import { Day } from '../entities/day';
 import { Task } from '../entities/task';
+import { TimeUnit } from '../entities/timeUnit';
+import { format } from '../functions/format';
 
 @Component({
   selector: 'app-todo-edit',
@@ -9,20 +11,30 @@ import { Task } from '../entities/task';
   styleUrls: ['./todo-edit.component.css']
 })
 export class TodoEditComponent implements OnInit {
-  @Input() task?: Task;
-  date!: Day;
-  hours = new Date().getHours().toFixed(2);
-  minutes = new Date().getMinutes().toFixed(2);
+  @Input() task: Task = {} as Task;
+  calendar: TimeUnit[] = []
+  timeUnit!: TimeUnit;
+  hours = new Date().getHours();
+  minutes = new Date().getMinutes();
 
-  constructor(private calendarService: DayService) {
-  }
+  constructor(public calendarService: DayService) {}
 
   ngOnInit(): void {
     this.today();
+    this.initiateCalendar();
   }
 
   today() {
     this.calendarService.getToday()
-    .subscribe(today => this.date = today);
+    .subscribe(today => this.timeUnit = today);
+  }
+
+  initiateCalendar() {
+    this.calendarService.getCalendar()
+    .subscribe(clndr => this.calendar = clndr);
+  }
+
+  format(num: number) {
+    return format(num, 2);
   }
 }

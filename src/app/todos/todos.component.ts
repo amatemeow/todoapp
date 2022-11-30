@@ -1,8 +1,10 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { timeInterval } from 'rxjs';
-import { DayService } from '../day.service';
+import { DayService } from '../calendar.service';
 import { Day } from '../entities/day';
 import { Task } from '../entities/task';
+import { TimeUnit } from '../entities/timeUnit';
+import { sleep } from '../functions/sleep';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { TaskService } from '../task.service';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  day!: Day
+  timeUnit!: TimeUnit
   taskList: Task[] = []
 
   constructor(
@@ -25,7 +27,7 @@ export class TodosComponent implements OnInit {
 
   getToday(): void {
     this.dayService.getToday()
-    .subscribe(day => this.day = day);
+    .subscribe(unit => this.timeUnit = unit);
   }
 
   getTasks(): void {
@@ -44,9 +46,10 @@ export class TodosComponent implements OnInit {
     this.taskService.deleteTask(task.id!).subscribe();
   }
 
-  updateOrAddTask(task: Task) {
+  async updateOrAddTask(task: Task) {
     // console.log('todos sent');
     this.taskService.updateOrAddTask(task).subscribe();
+    await sleep(100);
     this.getTasks();
   }
 }
