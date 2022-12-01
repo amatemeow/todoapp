@@ -1,9 +1,11 @@
 package app.todo
 
+import app.todo.config.AppConfig
 import app.todo.plugins.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.cors.routing.*
+import kotlinx.coroutines.sync.Mutex
 
 fun main(args: Array<String>): Unit =
     io.ktor.server.netty.EngineMain.main(args)
@@ -23,3 +25,4 @@ fun Application.module() {
         allowHost("localhost:4200", schemes = listOf("https", "http"))
     }
 }
+val config = AppConfig()
