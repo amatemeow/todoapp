@@ -1,5 +1,6 @@
 package app.todo.models
 
+import app.todo.config
 import kotlinx.datetime.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -8,7 +9,7 @@ import kotlinx.serialization.Transient
 data class TimeUnit(
     @Transient
     var instant: Instant = Clock.System.now(),
-    var lDateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault()),
+    var lDateTime: LocalDateTime = instant.toLocalDateTime(config.timeZone),
     var lDate: LocalDate = lDateTime.date,
     var year: Int = lDate.year,
     var month: Int = lDate.monthNumber,

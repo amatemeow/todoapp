@@ -2,7 +2,6 @@ package app.todo.models
 
 import kotlinx.datetime.*
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import java.util.UUID
 
 @Serializable
